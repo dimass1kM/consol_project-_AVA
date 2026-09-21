@@ -52,7 +52,6 @@ public class Main {
         System.out.println("Введите ограничение для поиска: ");
 
         String condition = scanner.nextLine().trim();
-        scanner.close();
 
         Set<Integer> result = new HashSet<>();
         String operator = "";
