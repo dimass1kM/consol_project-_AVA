@@ -1,9 +1,20 @@
+import java.util.stream.IntStream;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
+
+    public static void printMenu() {
+        System.out.println("========== МЕНЮ ==========");
+        System.out.println("1. Проверить, целое ли число");
+        System.out.println("2. Найти числа в диапазоне 1..150, содержащие цифру");
+        System.out.println("3. Фильтрация множества по условию (<, >, <=, >=)");
+        System.out.println("0. Выход");
+        System.out.println("==========================");
+    }
+
     public static void numInteger(double num) {
         if (num % 1 == 0) {
             System.out.println("Число является целым. ");
@@ -78,22 +89,43 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        //целое число
-        System.out.println("Введите число: ");
-        Double number = scanner.nextDouble();
+        while(true) {
+            printMenu();
+            System.out.print("Выберите пункт: ");
 
-        numInteger(number);
+            String choiceMenu = scanner.nextLine().trim();
 
-        //все числа
-        System.out.println("Введите число. Диапазон чисел проверки (1;150): ");
-        int numRange = scanner.nextInt();
-        rangeNum(numRange);
+            switch (choiceMenu) {
+                case"1": //целое число
+                    System.out.println("Введите число: ");
+                    Double number = scanner.nextDouble();
+                    scanner.nextLine();
 
-        scanner.nextLine();
+                    numInteger(number);
+                    break;
 
-        //выбор ограничений
-        choice(scanner);
-        scanner.close();
+                case"2": //все числа
+                    System.out.println("Введите число. Диапазон чисел проверки (1;150): ");
+                    int numRange = scanner.nextInt();
+
+                    scanner.nextLine();
+
+                    rangeNum(numRange);
+                    break;
+
+                case"3": //выбор ограничений
+                    choice(scanner);
+                    break;
+
+                case"0":
+                    System.out.println("Выход.");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Нет такого пункта. Попробуйте снова.");
+            }
         }
+
+    }
 }
-//ккк
